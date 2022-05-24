@@ -25,7 +25,9 @@ export class UsersService {
     if (!user) {
       throw new NotFoundException("Couldn't find user");
     }
-    await this.userModel.deleteOne({ username }).exec();
+    //await this.userModel.deleteOne({ username }).exec();
+    user.username = 'new username';
+    user.save();
     return user;
   }
 }
