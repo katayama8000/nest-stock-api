@@ -21,10 +21,11 @@ export class UsersService {
   }
 
   async findOne(username: string) {
-    const user = await this.userModel.findOne({ username });
+    const user = await this.userModel.findOne({ username }).exec();
     if (!user) {
       throw new NotFoundException("Couldn't find user");
     }
+    await this.userModel.deleteOne({ username }).exec();
     return user;
   }
 }
