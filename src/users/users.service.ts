@@ -14,9 +14,9 @@ export class UsersService {
       password: user.password,
     });
     return await createdUser.save();
-    this.users.push(user);
+    //this.users.push(user);
   }
-  findAll() {
-    return this.users;
+  async findAll() {
+    return await this.userModel.find().exec();
   }
 }
